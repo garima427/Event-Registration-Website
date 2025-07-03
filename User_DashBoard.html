@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard - Upcoming Events</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .navbar {
+      background-color: #B19CD9;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+    }
+    #nav-links {
+      list-style: none;
+      display: flex;
+    }
+    #nav-links li {
+      margin: 0 10px;
+    }
+    #nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+    header h1 {
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 5px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .dashboard {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .dashboard h2 {
+      color: #5D3A9B;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .event {
+      background: #fdfdfd;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .event h3 {
+      color: #5D3A9B;
+      margin-bottom: 8px;
+    }
+    .event p {
+      margin: 4px 0;
+    }
+    button {
+      background-color: #5D3A9B;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #4A2E7C;
+    }
+    .empty {
+      text-align: center;
+      color: #777;
+      padding: 20px 0;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      #nav-links {
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+      }
+      #nav-links.show { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">NexEvent</div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Upcoming_Events.html">Events</a></li>
+      <li><a href="Registration.html">Register</a></li>
+      <li><a href="User_DashBoard.html">Dashboard</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>User Dashboard</h1>
+    <p>Welcome! Here are your upcoming events.</p>
+  </header>
+
+  <div class="dashboard" id="dashboard">
+    <h2>Upcoming Events</h2>
+    <div id="eventList"></div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('show');
+    }
+
+    const userEvents = [
+      {
+        title: "Tech Innovators Conference",
+        date: "June 20, 2025",
+        time: "10:00 AM – 4:00 PM",
+        location: "Silicon Hall, San Francisco"
+      },
+      {
+        title: "AI & Future Expo",
+        date: "July 12, 2025",
+        time: "9:00 AM – 5:00 PM",
+        location: "Virtual Event"
+      }
+    ];
+
+    const eventList = document.getElementById('eventList');
+
+    function renderEvents() {
+      eventList.innerHTML = ""; // Clear existing content
+
+      if (userEvents.length === 0) {
+        eventList.innerHTML = "<div class='empty'>You have no upcoming events.</div>";
+        return;
+      }
+
+      userEvents.forEach((event, index) => {
+        const eventCard = document.createElement("div");
+        eventCard.className = "event";
+        eventCard.innerHTML = `
+          <h3>${event.title}</h3>
+          <p><strong>Date:</strong> ${event.date}</p>
+          <p><strong>Time:</strong> ${event.time}</p>
+          <p><strong>Location:</strong> ${event.location}</p>
+          <button onclick="cancelEvent(${index})">Cancel Registration</button>
+        `;
+        eventList.appendChild(eventCard);
+      });
+    }
+
+    function cancelEvent(index) {
+      const confirmCancel = confirm("Are you sure you want to cancel this event?");
+      if (confirmCancel) {
+        userEvents.splice(index, 1);
+        renderEvents();
+      }
+    }
+
+    renderEvents();
+  </script>
+</body>
+</html>

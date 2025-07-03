@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexEvent - Home</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #B19CD9;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+}
+
+#nav-links {
+  display: flex;
+  list-style: none;
+}
+
+#nav-links li {
+  margin: 0 10px;
+}
+
+#nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hero-intro {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('i2.jpeg') no-repeat center/cover;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.intro-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nex { color: #fbf8fa; }
+.event { color: #B19CD9; }
+
+.intro-text p {
+  font-size: 1.2rem;
+}
+
+.search-bar {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 30px;
+  border: none;
+  font-size: 1rem;
+}
+
+.events-section {
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.events-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background: #f0e9fa;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.event-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.event-card .date-time {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.event-card p {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.event-card a {
+    display: inline-block;           /* makes it behave like a button */
+  background-color: #5D3A9B;       /* dark purple background */
+  color: white;                    /* white text */
+  padding: 8px 16px;               /* spacing inside the button */
+  border-radius: 20px;             /* rounded corners */
+  text-decoration: none;           /* remove underline */
+  font-weight: 500;                /* slightly bolder text */
+  transition: background-color 0.3s ease;
+}
+.event-card a:hover {
+  background-color: #4A2E7C; 
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 20px 0;
+}
+
+.footer-links li {
+  margin: 0 10px;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.social-icons {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  color: #333;
+  margin: 0 8px;
+  font-size: 1.2rem;
+}
+
+footer {
+  background: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  #nav-links.show {
+    display: flex;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">NexEvent</div>
+    <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Upcoming_Events.html">Events</a></li>
+      <li><a href="Registration.html">Register</a></li>
+      <li><a href="User_DashBoard.html">Dashboard</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero-intro">
+    <div class="intro-text">
+      <h1><span class="nex">Nex</span><span class="event">Event</span></h1>
+      <p>Discover, explore, and join events tailored to your interests.<br>
+        Search by title, location, date, or category to find your perfect match.
+      </p>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="eventSearch" placeholder="Search events by title, location, date, or category"
+        onkeyup="filterEvents()">
+    </div>
+  </section>
+
+  <section class="events-section">
+    <h2>Featured Events</h2>
+    <div class="events-container">
+      <div class="event-card">
+        <h3>Women in Tech Summit</h3>
+        <div class="date-time">May 28, 2025 · 11:00 AM</div>
+        <p>Celebrating women leaders in tech. Inspiring talks, mentorship, and networking opportunities.</p>
+        <a href="women-in-tech-summit.html">View Details</a>
+      </div>
+      <div class="event-card">
+        <h3>Hackathon Xtreme</h3>
+        <div class="date-time">December 15–17, 2025 · 9:00 AM</div>
+        <p>A 48-hour coding marathon for tech enthusiasts, developers, and innovators to solve real-world problems.</p>
+        <a href="hackathon-xtreme.html">View Details</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="events-section" id="events">
+    <h2>Upcoming Events</h2>
+    <div class="events-container">
+      <div class="event-card">
+        <h3>Tech Conference 2025</h3>
+        <div class="date-time">June 15, 2025 · 10:00 AM</div>
+        <p>A gathering of the brightest minds in technology. Join keynotes, networking, and innovation showcases.</p>
+        <a href="tech-conference.html">View Details</a>
+      </div>
+      <div class="event-card">
+        <h3>Art & Culture Fest</h3>
+        <div class="date-time">July 2, 2025 · 5:00 PM</div>
+        <p>Experience a celebration of art, music, and cultural heritage through exhibits and performances.</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="event-card">
+        <h3>Startup Workshop</h3>
+        <div class="date-time">August 10, 2025 · 9:30 AM</div>
+        <p>A practical session for entrepreneurs to pitch, build, and launch their startup ideas.</p>
+        <a href="startup-workshop.html">View Details</a>
+      </div>
+      <div class="event-card">
+        <h3>Photography Bootcamp</h3>
+        <div class="date-time">September 5, 2025 · 2:00 PM</div>
+        <p>Master photography skills with hands-on sessions from professional photographers and editors.</p>
+        <a href="#">View Details</a>
+      </div>
+      <!-- More events... -->
+    </div>
+  </section>
+
+  <footer>
+    <ul class="footer-links">
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>&copy; 2025 NexEvent. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('show');
+    }
+    function filterEvents() {
+      const query = document.getElementById('eventSearch').value.toLowerCase();
+      document.querySelectorAll('.event-card').forEach(card => {
+        card.classList.toggle('hidden', !card.innerText.toLowerCase().includes(query));
+      });
+    }
+  </script>
+</body>
+</html>
