@@ -12,3 +12,7 @@ an interactive form integrated with social media links for easy communication.
 Technology Stack
 The project uses HTML5, CSS3 with Flexbox, Grid, and media queries, along with JavaScript and jQuery.
 
+Live-Demo:
+https://garima427.github.io/Event-Registration-Website/
+
+
